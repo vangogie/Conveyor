@@ -32,7 +32,8 @@ namespace AppartmentAppWeb
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+            app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()/*WithOrigins("http://localhost:4200")*/);
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
