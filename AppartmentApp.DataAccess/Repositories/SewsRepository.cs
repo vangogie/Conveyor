@@ -20,6 +20,18 @@ namespace AppartmentApp.DataAccess.Repositories
             var builder = new DbContextOptionsBuilder<CustomDbContext>(); //startup
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var engine = await _dbContext.Sews.FirstOrDefaultAsync(s => s.Id == id);
+            _dbContext.Sews.Remove(engine);
+            int result = await _dbContext.SaveChangesAsync();
+            if (result == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<IEnumerable<Sew>> Get()
         {
             var data = await _dbContext.Sews.Take(limit).ToListAsync();
@@ -29,6 +41,11 @@ namespace AppartmentApp.DataAccess.Repositories
         public async Task<IEnumerable<Sew>> Get(double power)
         {
             return await _dbContext.Sews.Where(x => x.Power == power).ToListAsync(); ;
+        }
+
+        public async Task<Sew> GetOne(int id)
+        {
+            return await _dbContext.Sews.FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<bool> Post(Sew sew)
@@ -42,7 +59,9 @@ namespace AppartmentApp.DataAccess.Repositories
         public async Task<bool> Update(Sew sew)
         {
             var entity = await _dbContext.Sews.FirstOrDefaultAsync(engine => engine.Id == sew.Id);
-            entity = sew;
+            entity.Power = sew.Power;
+            entity.Cost = sew.Cost;
+             _dbContext.Sews.Update(entity);
             await _dbContext.SaveChangesAsync();
             return true;
         }

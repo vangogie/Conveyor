@@ -60,5 +60,23 @@ namespace Conveyor.Business.Services
             return await _sewsRepository.Update(sew);
         }
 
+        public async Task<GetSewViewModel> GetOne(int id)
+        {
+            var data = await _sewsRepository.GetOne(id);
+            var model = new GetSewViewModel
+            {
+                Id = data.Id,
+                Power = data.Power,
+                Cost = data.Cost
+            };
+
+
+            return model;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            return await _sewsRepository.Delete(id);
+        }
     }
 }

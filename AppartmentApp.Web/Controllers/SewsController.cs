@@ -26,6 +26,13 @@ namespace AppartmentApp.Web.Controllers
             return await _sewsService.Get();
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<GetSewViewModel> GetOne(int id)
+        {
+             var engine = await _sewsService.GetOne(id);
+            return engine;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PostSewViewModel sewModel)
         {
@@ -41,6 +48,17 @@ namespace AppartmentApp.Web.Controllers
         public async Task<IActionResult> Update([FromBody] GetSewViewModel sewModel)
         {
             var result = await _sewsService.Update(sewModel);
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _sewsService.Delete(id);
             if (result)
             {
                 return Ok();

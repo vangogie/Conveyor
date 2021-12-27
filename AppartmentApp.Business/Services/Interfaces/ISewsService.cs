@@ -7,9 +7,11 @@ namespace Conveyor.Business.Services.Interfaces
 {
     public interface ISewsService
     {
-        public Task<IEnumerable<GetSewViewModel>> Get();
-        public Task<double> AwerageCost(double power);
-        public Task<bool> Post(PostSewViewModel sewModel);
-        public Task<bool> Update(GetSewViewModel sewModel);
+        Task<IEnumerable<GetSewViewModel>> Get();
+        Task<double> AwerageCost(double power);
+        Task<bool> Post(PostSewViewModel sewModel);
+        Task<bool> Update(GetSewViewModel sewModel);
+        Task<GetSewViewModel> GetOne(int id);
+        Task<bool> Delete(int id);
     }
 }
