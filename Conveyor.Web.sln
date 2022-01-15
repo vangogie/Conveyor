@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.Web", "AppartmentApp.Web\Conveyor.Web.csproj", "{B3C3719E-7906-4AFE-AD7E-26EC62646BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.Web", "Conveyor.Web\Conveyor.Web.csproj", "{B3C3719E-7906-4AFE-AD7E-26EC62646BC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.Business", "AppartmentApp.Business\Conveyor.Business.csproj", "{511CEDA3-23F4-4DE4-A2AF-60F369FC89C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.Business", "Conveyor.Business\Conveyor.Business.csproj", "{511CEDA3-23F4-4DE4-A2AF-60F369FC89C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.DataAccess", "AppartmentApp.DataAccess\Conveyor.DataAccess.csproj", "{904FC5AB-2FC2-4980-B7B2-6A5C2E291833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.DataAccess", "Conveyor.DataAccess\Conveyor.DataAccess.csproj", "{904FC5AB-2FC2-4980-B7B2-6A5C2E291833}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.ViewModels", "AppartmentApp.ViewModels\Conveyor.ViewModels.csproj", "{C434E41F-CC36-452D-A221-4BCD8CD20A9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conveyor.ViewModels", "Conveyor.ViewModels\Conveyor.ViewModels.csproj", "{C434E41F-CC36-452D-A221-4BCD8CD20A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
