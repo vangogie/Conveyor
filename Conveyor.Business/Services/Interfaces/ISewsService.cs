@@ -1,5 +1,4 @@
 ﻿using Conveyor.ViewModels.ViewModels;
-using Conveyor.ViewModels.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

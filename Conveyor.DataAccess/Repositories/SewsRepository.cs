@@ -1,5 +1,4 @@
 ﻿using Conveyor.DataAccess.Context;
-using Conveyor.DataAccess.Context.Interfaces;
 using Conveyor.DataAccess.Entities;
 using Conveyor.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;

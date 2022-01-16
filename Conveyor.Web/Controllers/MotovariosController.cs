@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Conveyor.Business.Services.Interfaces;
+using Conveyor.ViewModels.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Conveyor.ViewModels.ViewModels;
-using Conveyor.Business.Services.Interfaces;
-using Conveyor.ViewModels.ViewModels;
 
 namespace Conveyor.Web.Controllers
 {
@@ -26,10 +22,39 @@ namespace Conveyor.Web.Controllers
             return await _motovariosService.Get();
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<GetMotovarioViewModel> GetOne(int id)
+        {
+            var engine = await _motovariosService.GetOne(id);
+            return engine;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PostMotovarioViewModel MotovarioModel)
         {
             var result = await _motovariosService.Post(MotovarioModel);
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> Update([FromBody] GetMotovarioViewModel sewModel)
+        {
+            var result = await _motovariosService.Update(sewModel);
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("delete/{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _motovariosService.Delete(id);
             if (result)
             {
                 return Ok();

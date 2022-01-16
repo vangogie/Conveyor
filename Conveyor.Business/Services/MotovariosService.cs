@@ -1,12 +1,9 @@
-﻿using Conveyor.DataAccess.Entities;
-using Conveyor.ViewModels.ViewModels;
-using Conveyor.Business.Services.Interfaces;
+﻿using Conveyor.Business.Services.Interfaces;
+using Conveyor.DataAccess.Entities;
 using Conveyor.DataAccess.Repositories.Interfaces;
 using Conveyor.ViewModels.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Conveyor.Business.Services
@@ -32,7 +29,7 @@ namespace Conveyor.Business.Services
                     Cost = item.Cost
                 });
             }
-            return model;
+            return model.OrderByDescending(e=>e.Power);
         }
 
         public async Task<double> AwerageCost(double power)
@@ -54,6 +51,30 @@ namespace Conveyor.Business.Services
         {
             Motovario motovario = new Motovario { Cost = MotovarioModel.Cost, Power = MotovarioModel.Power };
             return await _motovarioRepository.Post(motovario);
+        }
+
+        public async Task<bool> Update(GetMotovarioViewModel motovarioModel)
+        {
+            var motovario = new Motovario { Id = motovarioModel.Id, Cost = motovarioModel.Cost, Power = motovarioModel.Power };
+            return await _motovarioRepository.Update(motovario);
+        }
+
+        public async Task<GetMotovarioViewModel> GetOne(int id)
+        {
+            var data = await _motovarioRepository.GetOne(id);
+            var model = new GetMotovarioViewModel
+            {
+                Id = data.Id,
+                Power = data.Power,
+                Cost = data.Cost
+            };
+
+            return model;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            return await _motovarioRepository.Delete(id);
         }
     }
 }

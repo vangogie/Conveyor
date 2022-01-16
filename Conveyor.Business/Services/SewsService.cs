@@ -6,6 +6,7 @@ using Conveyor.Business.Services.Interfaces;
 using Conveyor.ViewModels.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Conveyor.Business.Services
 {
@@ -30,7 +31,7 @@ namespace Conveyor.Business.Services
                     Cost = item.Cost
                 });
             }
-            return model;
+            return model.OrderByDescending(e => e.Power);
         }
 
         public async Task<double> AwerageCost(double power)

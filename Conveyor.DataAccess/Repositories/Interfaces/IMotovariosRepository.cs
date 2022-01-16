@@ -9,8 +9,11 @@ namespace Conveyor.DataAccess.Repositories.Interfaces
 {
     public interface IMotovariosRepository
     {
-        public Task<IEnumerable<Motovario>> Get();
-        public Task<IEnumerable<Motovario>> Get(double power);
-        public Task<bool> Post(Motovario motovario);
+        Task<IEnumerable<Motovario>> Get();
+        Task<IEnumerable<Motovario>> Get(double power);
+        Task<bool> Post(Motovario motovario);
+        Task<bool> Update(Motovario motovario);
+        Task<Motovario> GetOne(int id);
+        Task<bool> Delete(int id);
     }
 }
