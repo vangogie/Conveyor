@@ -39,16 +39,48 @@ namespace Conveyor.DataAccess.Repositories
             return 0;
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var belt = await _dbContext.ConveyorBelts.FirstOrDefaultAsync(cb => cb.Id == id);
+            _dbContext.ConveyorBelts.Remove(belt);
+            int result = await _dbContext.SaveChangesAsync();
+            if (result == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<IEnumerable<ConveyorBelt>> Get()
         {
             var data = await _dbContext.ConveyorBelts.Include(x=>x.BeltType).Take(limit).ToListAsync();
             return data;
         }
 
+        public async Task<ConveyorBelt> GetOne(int id)
+        {
+            return await _dbContext.ConveyorBelts
+                .AsNoTracking()
+                .Include(cb => cb.BeltType)
+                .FirstOrDefaultAsync(cb => cb.Id == id);
+        }
+
         public async Task<bool> Post(ConveyorBelt conveyorBelt)
         {
             _dbContext.BeltTypes.Attach(conveyorBelt.BeltType);
             var entity = _dbContext.ConveyorBelts.Add(conveyorBelt);
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> Update(ConveyorBelt conveyorBelt)
+        {
+            var beltType = await _dbContext.BeltTypes.FirstOrDefaultAsync(bt => bt.Id == conveyorBelt.BeltType.Id);
+            var belt = await _dbContext.ConveyorBelts.FirstOrDefaultAsync(cb => cb.Id == conveyorBelt.Id);
+            belt.Name = conveyorBelt.Name;
+            belt.Cost = conveyorBelt.Cost;
+            belt.BeltType = beltType;
+            _dbContext.ConveyorBelts.Update(belt);
             await _dbContext.SaveChangesAsync();
             return true;
         }
