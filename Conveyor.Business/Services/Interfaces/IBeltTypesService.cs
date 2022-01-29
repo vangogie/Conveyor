@@ -1,14 +1,15 @@
 ﻿using Conveyor.ViewModels.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Conveyor.Business.Services.Interfaces
 {
     public interface IBeltTypesService
     {
-        public Task<IEnumerable<GetBeltTypeViewModel>> Get();
+        Task<IEnumerable<GetBeltTypeViewModel>> Get();
+        Task<bool> Add(GetBeltTypeViewModel beltType);
+        Task<bool> Update(GetBeltTypeViewModel beltType);
+        Task<bool> Delete(int id);
+        Task<GetBeltTypeViewModel> GetOne(int id);
     }
 }

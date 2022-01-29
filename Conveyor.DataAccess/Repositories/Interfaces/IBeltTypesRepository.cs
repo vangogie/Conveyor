@@ -1,15 +1,16 @@
 ﻿using Conveyor.DataAccess.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Conveyor.DataAccess.Repositories.Interfaces
 {
     public interface IBeltTypesRepository
     {
-        public Task<IEnumerable<BeltType>> Get();
-        public Task<BeltType> Get(string BeltTypeName);
+        Task<IEnumerable<BeltType>> Get();
+        Task<BeltType> Get(string BeltTypeName);
+        Task<bool> Add(BeltType entity);
+        Task<bool> Update(BeltType model);
+        Task<bool> Delete(int id);
+        Task<BeltType> GetOne(int id);
     }
 }

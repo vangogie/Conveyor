@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Conveyor.DataAccess.Entities;
 
 namespace Conveyor.Business.Services
 {
@@ -16,6 +17,17 @@ namespace Conveyor.Business.Services
         public BeltTypesService(IBeltTypesRepository beltTypeRepository)
         {
             _beltTypeRepository = beltTypeRepository;
+        }
+
+        public async Task<bool> Add(GetBeltTypeViewModel beltType)
+        {
+            var entity = new BeltType { Type = beltType.Type };
+            return await _beltTypeRepository.Add(entity);
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            return await _beltTypeRepository.Delete(id);
         }
 
         public async Task<IEnumerable<GetBeltTypeViewModel>> Get()
@@ -31,6 +43,22 @@ namespace Conveyor.Business.Services
                 });
             }
             return model;
+        }
+
+        public async Task<GetBeltTypeViewModel> GetOne(int id)
+        {
+            var entity = await _beltTypeRepository.GetOne(id);
+            return new GetBeltTypeViewModel
+            {
+                Id = entity.Id,
+                Type = entity.Type
+            };
+        }
+
+        public async Task<bool> Update(GetBeltTypeViewModel beltType)
+        {
+            var model = new BeltType { Id = beltType.Id, Type = beltType.Type };
+            return await _beltTypeRepository.Update(model);
         }
     }
 }
