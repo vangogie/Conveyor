@@ -26,11 +26,28 @@ namespace Conveyor.Web.Controllers
             return await _metallCostingsService.Get();
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<GetMetallCostingViewModel> GetOne(int id)
+        {
+            return await _metallCostingsService.GetOne(id);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PostMetallCostingViewModel metallModel)
         {
             var result = await _metallCostingsService.Post(metallModel);
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> Update([FromBody] GetMetallCostingViewModel metallModel)
+        {
+            var result = await _metallCostingsService.Update(metallModel);
             if (result)
             {
                 return Ok();

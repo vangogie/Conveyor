@@ -1,12 +1,8 @@
-﻿using Conveyor.DataAccess.Entities;
-using Conveyor.ViewModels.ViewModels;
-using Conveyor.Business.Services.Interfaces;
+﻿using Conveyor.Business.Services.Interfaces;
+using Conveyor.DataAccess.Entities;
 using Conveyor.DataAccess.Repositories.Interfaces;
 using Conveyor.ViewModels.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Conveyor.Business.Services
@@ -40,10 +36,32 @@ namespace Conveyor.Business.Services
             return model;
         }
 
+        public async Task<GetMetallCostingViewModel> GetOne(int id)
+        {
+            var entity = await _metallCostingsRepository.GetOne(id);
+            return new GetMetallCostingViewModel
+            {
+                Id = entity.Id,
+                Cost = entity.Cost,
+                Name = entity.Name
+            };
+        }
+
         public async Task<bool> Post(PostMetallCostingViewModel metallModel)
         {
             MetallCosting metallCosting = new MetallCosting { Cost = metallModel.Cost, Name = metallModel.Name };
             return await _metallCostingsRepository.Post(metallCosting);
+        }
+
+        public async Task<bool> Update(GetMetallCostingViewModel metallModel)
+        {
+            MetallCosting metallCosting = new MetallCosting 
+            {
+                Id = metallModel.Id,
+                Cost = metallModel.Cost, 
+                Name = metallModel.Name 
+            };
+            return await _metallCostingsRepository.Update(metallCosting);
         }
     }
 }

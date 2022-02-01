@@ -33,9 +33,22 @@ namespace Conveyor.DataAccess.Repositories
             return data;
         }
 
+        public async Task<MetallCosting> GetOne(int id)
+        {
+            return await _dbContext.MetallCostings.FirstOrDefaultAsync(s => s.Id == id);
+        }
+
         public async Task<bool> Post(MetallCosting metallCosting)
         {
             var data = await _dbContext.MetallCostings.FirstOrDefaultAsync(x => x.Name == metallCosting.Name);
+            data.Cost = metallCosting.Cost;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> Update(MetallCosting metallCosting)
+        {
+            var data = await _dbContext.MetallCostings.FirstOrDefaultAsync(x => x.Id == metallCosting.Id);
             data.Cost = metallCosting.Cost;
             await _dbContext.SaveChangesAsync();
             return true;
