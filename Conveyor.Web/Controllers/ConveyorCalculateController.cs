@@ -52,7 +52,7 @@ namespace Conveyor.Web.Controllers
             ConveyorCostAnswer conveyorCostAnswer = new ConveyorCostAnswer();
             conveyorCostAnswer.TotalCost = (int)(EngineAwerageCost) + (int)(beltCost) + (int)(metallConveyorCost) + (int)(metallFrameCost);
             conveyorCostAnswer.Info =
-                $"Составные части стоимости:\n " +
+                $"Составные части стоимости:\n" +
                 $"   Мотор-редуктор: ${(int)EngineAwerageCost};\n" +
                 $"   Лента: ${(int)beltCost};\n" +
                 $"   Металл конвейера: ${(int)metallConveyorCost};\n" +
