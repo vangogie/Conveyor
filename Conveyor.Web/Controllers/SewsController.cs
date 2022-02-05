@@ -1,5 +1,6 @@
 ﻿using Conveyor.Business.Services.Interfaces;
 using Conveyor.ViewModels.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace Conveyor.Web.Controllers
         }
 
         [HttpPatch]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] GetSewViewModel sewModel)
         {
             var result = await _sewsService.Update(sewModel);
@@ -52,6 +54,7 @@ namespace Conveyor.Web.Controllers
         }
 
         [HttpGet("delete/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _sewsService.Delete(id);

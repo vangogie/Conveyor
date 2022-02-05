@@ -12,6 +12,10 @@ namespace Conveyor.DataAccess.Context
             modelBuilder.Entity<BeltType>()
                 .HasMany(x => x.ConveyorBelts)
                 .WithOne(x => x.BeltType);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
         }
 
         public static void Initialize(CustomDbContext dbContext)
@@ -62,6 +66,11 @@ namespace Conveyor.DataAccess.Context
             {
                 dbContext.ConveyorBelts.Add(new ConveyorBelt { Name = "Ammearaal Beltech ES 5.2 White", Cost = 240, BeltType = new BeltType { Type = "Пищевая" } });
                 dbContext.ConveyorBelts.Add(new ConveyorBelt { Name = "Ammearaal Beltech Grey", Cost = 240, BeltType = new BeltType { Type = "Не пищевая" } });
+            }
+
+            if (!dbContext.Users.Any())
+            {
+                dbContext.Users.Add(new User { Email = "admin@gmail.com", Password = "12345678" });
             }
 
             dbContext.SaveChanges();

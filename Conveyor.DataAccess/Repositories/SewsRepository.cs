@@ -39,7 +39,7 @@ namespace Conveyor.DataAccess.Repositories
 
         public async Task<IEnumerable<Sew>> Get(double power)
         {
-            return await _dbContext.Sews.Where(x => x.Power == power).ToListAsync(); ;
+            return await _dbContext.Sews.Where(x => x.Power == power).ToListAsync();
         }
 
         public async Task<Sew> GetOne(int id)

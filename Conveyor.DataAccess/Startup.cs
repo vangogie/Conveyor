@@ -2,8 +2,6 @@
 using Conveyor.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Conveyor.DataAccess.Repositories.Interfaces;
-using Conveyor.DataAccess.Repositories;
 
 namespace Conveyor.DataAccess
 {
@@ -16,6 +14,7 @@ namespace Conveyor.DataAccess
             services.AddTransient<IBeltTypesRepository, BeltTypesRepository>();
             services.AddTransient<IConveyorBeltsRepository, ConveyorBeltsRepository>();
             services.AddTransient<IMetallCostingsRepository, MetallCostingsRepository>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddDbContext<Context.CustomDbContext>(options => options.UseSqlServer(connectStr));
         }
     }

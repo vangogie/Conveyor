@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Conveyor.Web.Controllers
 {
@@ -45,6 +46,7 @@ namespace Conveyor.Web.Controllers
         }
 
         [HttpPatch]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] GetMetallCostingViewModel metallModel)
         {
             var result = await _metallCostingsService.Update(metallModel);

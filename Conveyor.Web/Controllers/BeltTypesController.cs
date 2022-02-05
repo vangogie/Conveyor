@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Conveyor.Web.Controllers
 {
@@ -43,6 +44,7 @@ namespace Conveyor.Web.Controllers
         }
 
         [HttpPatch]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] GetBeltTypeViewModel BeltType)
         {
             var result = await _beltTypesService.Update(BeltType);
@@ -54,6 +56,7 @@ namespace Conveyor.Web.Controllers
         }
 
         [HttpGet("delete/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _beltTypesService.Delete(id);

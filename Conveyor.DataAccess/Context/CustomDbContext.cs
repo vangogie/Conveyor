@@ -11,6 +11,7 @@ namespace Conveyor.DataAccess.Context
         public DbSet<MetallCosting> MetallCostings { get; set; }
         public DbSet<Motovario> Motovarios { get; set; }
         public DbSet<Sew> Sews { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         public CustomDbContext(DbContextOptions<CustomDbContext> options) : base(options)

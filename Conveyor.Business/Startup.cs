@@ -13,6 +13,7 @@ namespace Conveyor.Business
             services.AddTransient<IBeltTypesService, BeltTypesService>();
             services.AddTransient<IConveyorBeltsService, ConveyorBeltsService>();
             services.AddTransient<IMetallCostingsService, MetallCostingsService>();
+            services.AddTransient<IUsersService, UsersService>();
             Conveyor.DataAccess.Startup.Start(services, connectStr);
         }
     }
