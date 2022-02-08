@@ -70,7 +70,7 @@ namespace Conveyor.DataAccess.Context
 
             if (!dbContext.Users.Any())
             {
-                dbContext.Users.Add(new User { Email = "admin@gmail.com", Password = "12345678" });
+                dbContext.Users.Add(new User { Email = "admin@gmail.com", Password = "25D55AD283AA400AF464C76D713C07AD" });
             }
 
             dbContext.SaveChanges();

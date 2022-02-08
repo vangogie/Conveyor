@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace Conveyor.Web.Controllers
 {
@@ -22,6 +23,13 @@ namespace Conveyor.Web.Controllers
         public AuthController(IUsersService usersService)
         {
             _usersService = usersService;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IEnumerable<UserEmail>> Get()
+        {
+            return await _usersService.Get();
         }
 
         [HttpPost("validate")]
@@ -57,6 +65,27 @@ namespace Conveyor.Web.Controllers
         };*/
 
             return JsonConvert.SerializeObject(response);
+        }
+
+        [HttpPost("adduser")]
+        [Authorize]
+        public async Task<bool> Add(UserModel model)
+        {
+            return await _usersService.Add(model);
+        }
+
+        [HttpPatch]
+        [Authorize]
+        public async Task<bool> Update([FromBody] UserModel model)
+        {
+            return await _usersService.Update(model);  
+        }
+
+        [HttpGet("delete/{id:int}")]
+        [Authorize]
+        public async Task<bool> Delete(int id)
+        {
+            return await _usersService.Delete(id);
         }
     }
 }
