@@ -25,7 +25,6 @@ namespace Conveyor.DataAccess.Repositories
             {
                 var newEntity = _dbContext.Users.Add(user);
                 await _dbContext.SaveChangesAsync();
-                //appartment = entity.Entity; //для возврата добавленного объекта
                 return true;
             }
             return false;

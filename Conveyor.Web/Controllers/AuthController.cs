@@ -37,7 +37,6 @@ namespace Conveyor.Web.Controllers
         public bool GetValid() { return true; }
 
         [HttpPost("login")]
-        //[ValidateAntiForgeryToken]
         public async Task<string> Login(UserModel model)
         {
             var identity = await _usersService.IsValidUser(model);

@@ -1,12 +1,9 @@
-﻿using Conveyor.ViewModels.ViewModels;
-using Conveyor.Business.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Conveyor.Business.Services.Interfaces;
+using Conveyor.ViewModels.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Conveyor.Web.Controllers
 {
